@@ -33,6 +33,7 @@ services:
       - '4318:4318'
       - '4317:4317'
       - '8888:8888'
+    restart: unless-stopped
     volumes:
       - ./otel:/etc/otel
     networks:
@@ -66,6 +67,7 @@ services:
       - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
     networks:
       - observability_net
   loki:
@@ -86,6 +88,7 @@ volumes:
   prom_data:
   tempo_data:
   loki_data:
+  grafana_data:
 
 networks:
   observability_net:
